@@ -8,15 +8,15 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:        #0a0e17;
-      --surface:   #111827;
-      --surface2:  #1a2235;
-      --accent:    #00d4ff;
-      --accent2:   #0099cc;
-      --text:      #e2e8f0;
-      --muted:     #8892a4;
-      --border:    rgba(0,212,255,.15);
-      --glow:      rgba(0,212,255,.08);
+      --bg:        #f8fafc;
+      --surface:   #ffffff;
+      --surface2:  #f1f5f9;
+      --accent:    #2563eb;
+      --accent2:   #1d4ed8;
+      --text:      #0f172a;
+      --muted:     #64748b;
+      --border:    rgba(37,99,235,.2);
+      --glow:      rgba(37,99,235,.08);
     }
 
     html { scroll-behavior: smooth; }
@@ -34,12 +34,12 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; justify-content: space-between; align-items: center;
       padding: 1.1rem 5%;
-      background: rgba(10,14,23,.85);
+      background: rgba(248,250,252,.92);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
       transition: box-shadow .3s;
     }
-    nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,.4); }
+    nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,.1); }
 
     .logo {
       font-size: 1.1rem; font-weight: 700; letter-spacing: .5px;
@@ -86,12 +86,12 @@
     }
     #hero::before {
       width: 500px; height: 500px;
-      background: radial-gradient(circle, #00d4ff 0%, transparent 70%);
+      background: radial-gradient(circle, #93c5fd 0%, transparent 70%);
       top: -100px; left: -100px;
     }
     #hero::after {
       width: 400px; height: 400px;
-      background: radial-gradient(circle, #0055ff 0%, transparent 70%);
+      background: radial-gradient(circle, #bfdbfe 0%, transparent 70%);
       bottom: -80px; right: -80px;
       animation-direction: alternate-reverse;
     }
@@ -110,7 +110,7 @@
       font-size: clamp(2.8rem, 7vw, 5.5rem);
       font-weight: 800; line-height: 1.05;
       letter-spacing: -1.5px;
-      background: linear-gradient(135deg, #ffffff 30%, #00d4ff 100%);
+      background: linear-gradient(135deg, #0f172a 30%, #2563eb 100%);
       -webkit-background-clip: text; -webkit-text-fill-color: transparent;
       background-clip: text;
       opacity: 0; animation: fadeUp .6s .4s ease forwards;
@@ -139,15 +139,15 @@
 
     .btn-primary {
       padding: .85rem 2rem; border-radius: 6px;
-      background: var(--accent); color: #0a0e17;
+      background: var(--accent); color: #ffffff;
       font-weight: 700; font-size: .9rem; letter-spacing: .5px;
       text-decoration: none; border: none; cursor: pointer;
       transition: background .2s, transform .15s, box-shadow .2s;
-      box-shadow: 0 0 20px rgba(0,212,255,.3);
+      box-shadow: 0 0 20px rgba(37,99,235,.3);
     }
     .btn-primary:hover {
-      background: #33ddff; transform: translateY(-2px);
-      box-shadow: 0 0 30px rgba(0,212,255,.5);
+      background: #1d4ed8; transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(37,99,235,.4);
     }
 
     .btn-ghost {
@@ -243,7 +243,7 @@
       transition: box-shadow .3s, transform .3s;
     }
     .project-card:hover {
-      box-shadow: 0 20px 60px rgba(0,212,255,.1);
+      box-shadow: 0 20px 60px rgba(37,99,235,.1);
       transform: translateY(-4px);
     }
 
@@ -254,7 +254,7 @@
 
     .project-icon {
       width: 52px; height: 52px; border-radius: 12px;
-      background: linear-gradient(135deg, var(--accent), #0055ff);
+      background: linear-gradient(135deg, var(--accent), #1d4ed8);
       display: flex; align-items: center; justify-content: center;
       font-size: 1.4rem; flex-shrink: 0;
     }
@@ -266,7 +266,7 @@
     .project-meta .tag {
       display: inline-block; margin-top: .4rem;
       padding: .25rem .7rem; border-radius: 20px;
-      background: rgba(0,212,255,.1); border: 1px solid var(--border);
+      background: rgba(37,99,235,.08); border: 1px solid var(--border);
       font-size: .75rem; color: var(--accent); letter-spacing: 1px;
     }
 
@@ -357,10 +357,10 @@
 
     .cert-badge {
       width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
-      background: linear-gradient(135deg, var(--accent), #0055ff);
+      background: linear-gradient(135deg, var(--accent), #1d4ed8);
       display: flex; align-items: center; justify-content: center;
-      font-size: .85rem; font-weight: 800; color: #0a0e17;
-      box-shadow: 0 0 14px rgba(0,212,255,.3);
+      font-size: .85rem; font-weight: 800; color: #ffffff;
+      box-shadow: 0 0 14px rgba(37,99,235,.3);
     }
 
     .cert-card h4 { font-size: 1rem; font-weight: 700; margin-bottom: .3rem; }
@@ -388,7 +388,7 @@
     .contact-inner::before {
       content: '';
       position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 50% 0%, rgba(0,212,255,.06) 0%, transparent 70%);
+      background: radial-gradient(ellipse at 50% 0%, rgba(37,99,235,.06) 0%, transparent 70%);
       pointer-events: none;
     }
 
