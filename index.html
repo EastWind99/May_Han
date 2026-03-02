@@ -244,8 +244,21 @@
     /* ── PROJECT ── */
     #project { background: var(--bg); }
 
+    .project-track {
+      display: flex;
+      gap: 1.5rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding: 0.5rem 0 1.5rem;
+      scrollbar-width: none;
+    }
+    .project-track::-webkit-scrollbar { display: none; }
+
     .project-card {
-      max-width: 900px; margin: 0 auto;
+      min-width: clamp(320px, 55vw, 820px);
+      flex-shrink: 0;
+      scroll-snap-align: start;
       background: rgba(255,255,255,.55);
       backdrop-filter: blur(20px) saturate(180%);
       -webkit-backdrop-filter: blur(20px) saturate(180%);
@@ -314,12 +327,15 @@
     #skills { background: var(--surface); }
 
     .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
       gap: 1rem; max-width: 1000px; margin: 0 auto;
     }
 
     .skill-card {
+      flex: 1 1 220px;
+      max-width: calc(25% - 0.75rem);
       background: rgba(255,255,255,.5);
       backdrop-filter: blur(16px) saturate(180%);
       -webkit-backdrop-filter: blur(16px) saturate(180%);
@@ -467,6 +483,7 @@
       .hamburger { display: flex; }
 
       .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .project-card { min-width: clamp(280px, 85vw, 500px); }
       .project-pillars { grid-template-columns: 1fr; }
       .project-header { flex-direction: column; gap: .8rem; }
       .project-header, .project-body, .project-pillars { padding-left: 1.5rem; padding-right: 1.5rem; }
@@ -496,8 +513,8 @@
 <section id="hero">
   <p class="hero-eyebrow">Technical Program Manager</p>
   <h1>May Han</h1>
-  <p class="hero-title">Driving results at the intersection of technology &amp; delivery</p>
-  <p class="hero-tagline">Driving clarity, execution, and impact across complex technical programs</p>
+  <p class="hero-title">PMO Leader driving results at the intersection of technology &amp; governance</p>
+  <p class="hero-tagline">Enabling clarity, execution, and impact across complex technical programs</p>
   <div class="cta-group">
     <a href="#project" class="btn-primary">View My Work</a>
     <a href="#contact" class="btn-ghost">Get In Touch</a>
@@ -543,35 +560,99 @@
     <div class="divider" style="margin:0 auto;"></div>
   </div>
 
-  <div class="project-card reveal">
-    <div class="project-header">
-      <div class="project-icon">&#9741;</div>
-      <div class="project-meta">
-        <h3><span>over</span>.vu</h3>
-        <span class="tag">Work Management Platform</span>
+  <div class="project-track">
+
+    <div class="project-card reveal">
+      <div class="project-header">
+        <div class="project-icon">&#9741;</div>
+        <div class="project-meta">
+          <h3><span>over</span>.vu</h3>
+          <span class="tag">Work Management Platform</span>
+        </div>
+      </div>
+      <div class="project-body">
+        <p>A work management platform purpose-built for large-scale utility clients. over.vu enables enterprise organizations to manage complex operational workflows with clarity and precision. As Technical Program Manager, I sit at the center of product strategy and engineering execution — ensuring the platform evolves in lock-step with client needs and long-term business goals.</p>
+      </div>
+      <div class="project-pillars">
+        <div class="pillar">
+          <div class="pillar-icon">&#128203;</div>
+          <h4>Product Roadmap</h4>
+          <p>Own and prioritize the product roadmap, aligning features with enterprise client objectives and platform strategy.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">&#9881;&#65039;</div>
+          <h4>Technical Operations</h4>
+          <p>Manage day-to-day technical operations, ensuring engineering velocity, stability, and cross-team coordination.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">&#128640;</div>
+          <h4>Delivery Framework</h4>
+          <p>Lead the end-to-end delivery framework for feature execution, from scoping through release across enterprise clients.</p>
+        </div>
       </div>
     </div>
-    <div class="project-body">
-      <p>A work management platform purpose-built for large-scale utility clients. over.vu enables enterprise organizations to manage complex operational workflows with clarity and precision. As Technical Program Manager, I sit at the center of product strategy and engineering execution — ensuring the platform evolves in lock-step with client needs and long-term business goals.</p>
+
+    <div class="project-card reveal">
+      <div class="project-header">
+        <div class="project-icon">&#128241;</div>
+        <div class="project-meta">
+          <h3>Field <span>Application</span></h3>
+          <span class="tag">iOS Application</span>
+        </div>
+      </div>
+      <div class="project-body">
+        <p>A native iOS application that connects directly to the over.vu platform, purpose-built to collect structured field data at job sites and feed it seamlessly into the desktop workflow. I managed end-to-end delivery of the application — from scoping and contractor resource management through QA and release — and designed the AI feature that bridges mobile intake with over.vu desktop output, transforming raw field captures into actionable work records.</p>
+      </div>
+      <div class="project-pillars">
+        <div class="pillar">
+          <div class="pillar-icon">&#128203;</div>
+          <h4>Project Management</h4>
+          <p>Owned full delivery lifecycle from scoping through App Store release, coordinating contractor resources and cross-functional timelines.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">&#128640;</div>
+          <h4>Go-to-Market Oversight</h4>
+          <p>Defined rollout strategy, coordinated field pilots, and drove adoption across utility client field teams.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">&#127959;</div>
+          <h4>Architectural Planning</h4>
+          <p>Designed the AI-powered intake-to-output pipeline connecting mobile data capture to the over.vu platform.</p>
+        </div>
+      </div>
     </div>
-    <div class="project-pillars">
-      <div class="pillar">
-        <div class="pillar-icon">&#128203;</div>
-        <h4>Product Roadmap</h4>
-        <p>Own and prioritize the product roadmap, aligning features with enterprise client objectives and platform strategy.</p>
+
+    <div class="project-card reveal">
+      <div class="project-header">
+        <div class="project-icon">&#9889;</div>
+        <div class="project-meta">
+          <h3>Enterprise <span>Utility Apps</span></h3>
+          <span class="tag">Custom Software Delivery</span>
+        </div>
       </div>
-      <div class="pillar">
-        <div class="pillar-icon">&#9881;&#65039;</div>
-        <h4>Technical Operations</h4>
-        <p>Manage day-to-day technical operations, ensuring engineering velocity, stability, and cross-team coordination.</p>
+      <div class="project-body">
+        <p>Project managed the full delivery lifecycle of three custom software solutions built for large-scale utility clients, guiding each engagement from initial proposal and contract negotiation through development, acceptance testing, and final sign-off. Responsible for scope definition, SLA structuring, vendor coordination, and revenue recognition across all three concurrent programs.</p>
       </div>
-      <div class="pillar">
-        <div class="pillar-icon">&#128640;</div>
-        <h4>Delivery Framework</h4>
-        <p>Lead the end-to-end delivery framework for feature execution, from scoping through release across enterprise clients.</p>
+      <div class="project-pillars">
+        <div class="pillar">
+          <div class="pillar-icon">&#128221;</div>
+          <h4>Software Contract Management</h4>
+          <p>Drafted and negotiated software agreements, change orders, and acceptance criteria for three utility client engagements.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">&#127919;</div>
+          <h4>SLA Definition</h4>
+          <p>Defined service-level commitments, uptime targets, and escalation paths aligned to utility operational requirements.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-icon">&#128176;</div>
+          <h4>Revenue Capture</h4>
+          <p>Managed milestone-based billing, ensured acceptance sign-off, and drove timely revenue recognition across all projects.</p>
+        </div>
       </div>
     </div>
-  </div>
+
+  </div><!-- /.project-track -->
 </section>
 
 <!-- SKILLS -->
