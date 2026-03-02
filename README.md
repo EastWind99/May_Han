@@ -1,2 +1,2 @@
 # Personal
-# This repo is for personal use.
+# This repo is for personal portfolio creation purposes. 
