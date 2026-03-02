@@ -252,12 +252,31 @@
       -webkit-overflow-scrolling: touch;
       padding: 0.5rem 0 1.5rem;
       scrollbar-width: none;
+      max-width: 900px;
+      margin: 0 auto;
     }
     .project-track::-webkit-scrollbar { display: none; }
 
+    .project-dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1.25rem;
+    }
+    .project-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: rgba(37,99,235,.2);
+      border: none; cursor: pointer; padding: 0;
+      transition: background .25s, transform .25s;
+    }
+    .project-dot.active {
+      background: var(--accent);
+      transform: scale(1.35);
+    }
+
     .project-card {
-      min-width: clamp(320px, 55vw, 820px);
-      flex-shrink: 0;
+      flex: 0 0 100%;
       scroll-snap-align: start;
       background: rgba(255,255,255,.55);
       backdrop-filter: blur(20px) saturate(180%);
@@ -483,7 +502,6 @@
       .hamburger { display: flex; }
 
       .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-      .project-card { min-width: clamp(280px, 85vw, 500px); }
       .project-pillars { grid-template-columns: 1fr; }
       .project-header { flex-direction: column; gap: .8rem; }
       .project-header, .project-body, .project-pillars { padding-left: 1.5rem; padding-right: 1.5rem; }
@@ -653,6 +671,12 @@
     </div>
 
   </div><!-- /.project-track -->
+
+  <div class="project-dots" aria-label="Project navigation">
+    <button class="project-dot active" aria-label="Project 1"></button>
+    <button class="project-dot" aria-label="Project 2"></button>
+    <button class="project-dot" aria-label="Project 3"></button>
+  </div>
 </section>
 
 <!-- SKILLS -->
@@ -796,6 +820,35 @@
     });
   }, { threshold: 0.12 });
   revealEls.forEach(el => observer.observe(el));
+
+  // Project card dot indicator
+  const track = document.querySelector('.project-track');
+  const cards = document.querySelectorAll('.project-card');
+  const dots  = document.querySelectorAll('.project-dot');
+
+  if (track && dots.length) {
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        track.scrollTo({
+          left: track.scrollLeft +
+                cards[i].getBoundingClientRect().left -
+                track.getBoundingClientRect().left,
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    const dotObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+          const idx = Array.from(cards).indexOf(entry.target);
+          dots.forEach((d, j) => d.classList.toggle('active', j === idx));
+        }
+      });
+    }, { root: track, threshold: 0.5 });
+
+    cards.forEach(card => dotObserver.observe(card));
+  }
 </script>
 </body>
 </html>
