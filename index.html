@@ -200,19 +200,6 @@
       padding: 6px 12px; border-radius: 8px; background: var(--accent-soft);
     }
 
-    .work-more {
-      margin-top: 20px;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
-    }
-    .mini {
-      background: var(--surface); border: 1px solid var(--line); border-radius: 18px;
-      padding: 32px;
-    }
-    .mini h3 {
-      margin: 10px 0 12px;
-      font-family: var(--serif); font-weight: 600; font-size: 1.3rem; line-height: 1.25;
-    }
-    .mini p { color: var(--muted); }
 
     /* ── EXPERIENCE ── */
     .exp-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 64px; }
@@ -302,7 +289,7 @@
       .result:nth-child(n+3) { border-top: 1px solid var(--line); }
       .about-grid, .exp-grid { grid-template-columns: 1fr; gap: 32px; }
       .case { grid-template-columns: 1fr; gap: 20px; padding: 28px; }
-      .work-more, .skills-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr; }
       section.block { padding: 72px 0; }
       .contact-card { padding: 48px 28px; }
     }
@@ -322,7 +309,7 @@
 
     @media (max-width: 420px) {
       .wrap, .nav-inner { padding: 0 16px; }
-      .case, .mini, .skill { padding: 22px; }
+      .case, .skill { padding: 22px; }
       .btn { padding: .75rem 1.2rem; }
     }
   </style>
@@ -519,20 +506,6 @@
         </div>
       </article>
 
-    </div>
-
-    <!-- NOTE: the two items below were marked [confirm] in the content brief. -->
-    <div class="work-more">
-      <article class="mini reveal">
-        <p class="case-num">06</p>
-        <h3>Field Application for iOS</h3>
-        <p>I managed delivery of a native iOS app that connects to over.vu and collects structured field data at job sites, from scoping and contractor coordination through QA and App Store release. I also defined requirements for an AI feature that turns field captures into work records.</p>
-      </article>
-      <article class="mini reveal">
-        <p class="case-num">07</p>
-        <h3>Custom software for utility clients</h3>
-        <p>I managed three concurrent custom software projects from proposal through development, acceptance testing, and sign-off, including scope, change orders, and milestone billing.</p>
-      </article>
     </div>
   </div>
 </section>
