@@ -3,783 +3,593 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>May Han — Technical Program Manager</title>
+  <title>May Han | Program Manager, Technical Delivery and Compliance</title>
+  <meta name="description" content="May Han runs delivery and compliance for a multi-tenant SaaS platform serving utility clients." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:        rgba(240,249,255,0.2);
-      --surface:   rgba(255,255,255,0.55);
-      --surface2:  rgba(255,255,255,0.38);
-      --accent:    #2563eb;
-      --accent2:   #1d4ed8;
-      --text:      #0f172a;
-      --muted:     #64748b;
-      --border:    rgba(255,255,255,0.65);
-      --glow:      rgba(37,99,235,.12);
+      --bg:        #f7f6f2;
+      --surface:   #ffffff;
+      --surface-2: #efede6;
+      --text:      #16191f;
+      --muted:     #5b6170;
+      --faint:     #8a8f9b;
+      --line:      #e2dfd6;
+      --accent:    #1f4fd1;
+      --accent-ink:#ffffff;
+      --accent-soft: rgba(31,79,209,.08);
+      --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+      --sans:  'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      --max: 1120px;
     }
 
-    html { scroll-behavior: smooth; }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg:        #111317;
+        --surface:   #181b21;
+        --surface-2: #1e222a;
+        --text:      #eceef2;
+        --muted:     #a3a9b6;
+        --faint:     #767c89;
+        --line:      #2a2f39;
+        --accent:    #7ea2ff;
+        --accent-ink:#0d1220;
+        --accent-soft: rgba(126,162,255,.1);
+      }
+    }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 72px; }
 
     body {
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      background: linear-gradient(135deg, #dbeafe 0%, #e0f2fe 25%, #faf5ff 60%, #ecfdf5 100%);
-      background-attachment: fixed;
+      font-family: var(--sans);
+      background: var(--bg);
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.65;
+      font-size: 17px;
+      -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
 
+    a { color: inherit; }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
     /* ── NAV ── */
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 1.1rem 5%;
-      background: rgba(255,255,255,.65);
-      backdrop-filter: blur(28px) saturate(200%);
-      -webkit-backdrop-filter: blur(28px) saturate(200%);
-      border-bottom: 1px solid rgba(255,255,255,.8);
-      transition: box-shadow .3s;
+      position: fixed; inset: 0 0 auto 0; z-index: 100;
+      background: color-mix(in srgb, var(--bg) 85%, transparent);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid transparent;
+      transition: border-color .25s;
     }
-    nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,.1); }
-
+    nav.scrolled { border-bottom-color: var(--line); }
+    .nav-inner {
+      max-width: var(--max); margin: 0 auto; padding: 0 24px;
+      height: 64px; display: flex; align-items: center; justify-content: space-between;
+    }
     .logo {
-      font-size: 1.1rem; font-weight: 700; letter-spacing: .5px;
-      color: var(--text);
-      text-decoration: none;
+      font-family: var(--serif); font-weight: 600; font-size: 1.2rem;
+      text-decoration: none; letter-spacing: -.01em;
     }
-    .logo span { color: var(--accent); }
-
     .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a {
-      color: var(--muted); text-decoration: none;
-      font-size: .9rem; letter-spacing: .5px;
-      transition: color .2s;
+      text-decoration: none; color: var(--muted);
+      font-size: .92rem; font-weight: 500; transition: color .2s;
     }
-    .nav-links a:hover { color: var(--accent); }
+    .nav-links a:hover { color: var(--text); }
 
-    .hamburger {
-      display: none; flex-direction: column; gap: 5px;
-      cursor: pointer; padding: 4px;
+    .menu-btn {
+      display: none; background: none; border: 0; cursor: pointer;
+      width: 40px; height: 40px; color: var(--text);
     }
-    .hamburger span {
-      display: block; width: 22px; height: 2px;
-      background: var(--text); border-radius: 2px;
-      transition: all .3s;
+    .menu-btn span {
+      display: block; width: 20px; height: 2px; margin: 4px auto;
+      background: currentColor; border-radius: 2px;
     }
+
+    /* ── BUTTONS ── */
+    .btns { display: flex; flex-wrap: wrap; gap: .75rem; }
+    .btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .8rem 1.4rem; border-radius: 999px;
+      font-size: .95rem; font-weight: 600; text-decoration: none;
+      border: 1px solid var(--text);
+      transition: transform .15s, background .2s, color .2s, border-color .2s;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { background: var(--text); color: var(--bg); }
+    .btn-primary:hover { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+    .btn-ghost { background: transparent; color: var(--text); border-color: var(--line); }
+    .btn-ghost:hover { border-color: var(--text); }
 
     /* ── HERO ── */
-    #hero {
-      min-height: 100vh;
-      display: flex; flex-direction: column;
-      justify-content: center; align-items: center;
-      text-align: center;
-      padding: 7rem 5% 4rem;
-      position: relative;
-      overflow: hidden;
+    #top { padding: 150px 0 72px; }
+    .hero-grid {
+      display: grid; grid-template-columns: 1.5fr 1fr; gap: 64px; align-items: center;
     }
-
-    /* animated gradient orbs */
-    #hero::before, #hero::after {
-      content: '';
-      position: absolute; border-radius: 50%;
-      filter: blur(80px); opacity: .25;
-      animation: drift 8s ease-in-out infinite alternate;
+    .eyebrow {
+      font-size: .8rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--accent);
     }
-    #hero::before {
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, #93c5fd 0%, transparent 70%);
-      top: -100px; left: -100px;
+    .hero-name {
+      margin-top: 18px;
+      font-family: var(--serif); font-weight: 600;
+      font-size: clamp(2.6rem, 6vw, 4.6rem); line-height: 1.02; letter-spacing: -.025em;
     }
-    #hero::after {
-      width: 400px; height: 400px;
-      background: radial-gradient(circle, #bfdbfe 0%, transparent 70%);
-      bottom: -80px; right: -80px;
-      animation-direction: alternate-reverse;
+    .hero-role { margin-top: 10px; font-size: 1.1rem; color: var(--muted); font-weight: 500; }
+    .hero-lead {
+      margin-top: 32px;
+      font-family: var(--serif); font-weight: 500;
+      font-size: clamp(1.5rem, 3vw, 2.1rem); line-height: 1.25; letter-spacing: -.01em;
     }
-    @keyframes drift {
-      from { transform: translate(0,0) scale(1); }
-      to   { transform: translate(40px,30px) scale(1.1); }
-    }
-
-    .hero-eyebrow {
-      font-size: .8rem; letter-spacing: 3px; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 1.2rem;
-      opacity: 0; animation: fadeUp .6s .2s ease forwards;
-    }
-
-    h1 {
-      font-size: clamp(2.8rem, 7vw, 5.5rem);
-      font-weight: 800; line-height: 1.05;
-      letter-spacing: -1.5px;
-      background: linear-gradient(135deg, #0f172a 30%, #2563eb 100%);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text;
-      opacity: 0; animation: fadeUp .6s .4s ease forwards;
-    }
-
-    .hero-title {
-      margin-top: .8rem;
-      font-size: clamp(1rem, 2.5vw, 1.3rem);
-      color: var(--muted); letter-spacing: 1px;
-      opacity: 0; animation: fadeUp .6s .6s ease forwards;
-    }
-
-    .hero-tagline {
-      margin-top: 1.4rem;
-      max-width: 540px;
-      font-size: clamp(.95rem, 2vw, 1.1rem);
-      color: var(--text); line-height: 1.8;
-      opacity: 0; animation: fadeUp .6s .8s ease forwards;
-    }
+    .hero-sub { margin-top: 14px; max-width: 560px; color: var(--muted); font-size: 1.08rem; }
+    #top .btns { margin-top: 32px; }
 
     .hero-photo {
-      width: 130px;
-      height: 130px;
-      border-radius: 50%;
-      object-fit: cover;
-      object-position: center top;
-      border: 3px solid rgba(255,255,255,.8);
-      box-shadow: 0 8px 32px rgba(37,99,235,.18);
-      margin: 1.25rem auto 0;
-      display: block;
+      width: 100%; max-width: 380px; aspect-ratio: 4 / 5; justify-self: end;
+      object-fit: cover; object-position: center 20%;
+      border-radius: 20px; background: var(--surface-2);
     }
 
-    .cta-group {
-      margin-top: 2.4rem; display: flex; gap: 1rem; flex-wrap: wrap;
-      justify-content: center;
-      opacity: 0; animation: fadeUp .6s 1s ease forwards;
+    /* ── RESULTS ── */
+    .results {
+      margin-top: 80px;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
     }
-
-    .btn-primary {
-      padding: .85rem 2rem; border-radius: 6px;
-      background: var(--accent); color: #ffffff;
-      font-weight: 700; font-size: .9rem; letter-spacing: .5px;
-      text-decoration: none; border: none; cursor: pointer;
-      transition: background .2s, transform .15s, box-shadow .2s;
-      box-shadow: 0 0 20px rgba(37,99,235,.3);
+    .result { padding: 28px 24px 28px 0; }
+    .result + .result { padding-left: 24px; border-left: 1px solid var(--line); }
+    .result .fig {
+      font-family: var(--serif); font-weight: 600;
+      font-size: clamp(2rem, 4vw, 2.8rem); line-height: 1; letter-spacing: -.02em;
+      color: var(--accent);
     }
-    .btn-primary:hover {
-      background: #1d4ed8; transform: translateY(-2px);
-      box-shadow: 0 0 30px rgba(37,99,235,.4);
-    }
-
-    .btn-ghost {
-      padding: .85rem 2rem; border-radius: 6px;
-      background: rgba(255,255,255,.45);
-      backdrop-filter: blur(12px) saturate(160%);
-      -webkit-backdrop-filter: blur(12px) saturate(160%);
-      border: 1px solid rgba(255,255,255,.7); color: var(--text);
-      font-size: .9rem; letter-spacing: .5px;
-      text-decoration: none; cursor: pointer;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.85);
-      transition: border-color .2s, color .2s, transform .15s, box-shadow .2s;
-    }
-    .btn-ghost:hover {
-      border-color: var(--accent); color: var(--accent);
-      transform: translateY(-2px);
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+    .result .lbl { margin-top: 10px; font-size: .92rem; color: var(--muted); line-height: 1.45; }
 
     /* ── SECTIONS ── */
-    section { padding: 6rem 5%; }
-
-    .section-label {
-      font-size: .75rem; letter-spacing: 3px; text-transform: uppercase;
-      color: var(--accent); margin-bottom: .6rem;
-    }
-
-    .section-title {
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      font-weight: 800; letter-spacing: -1px; line-height: 1.15;
-      margin-bottom: 1.2rem;
-    }
-
-    .section-title span { color: var(--accent); }
-
-    .divider {
-      width: 48px; height: 3px;
-      background: linear-gradient(90deg, var(--accent), transparent);
-      border-radius: 2px; margin-bottom: 2rem;
+    section.block { padding: 96px 0; }
+    section.alt { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .sec-head { margin-bottom: 48px; }
+    .sec-head h2 {
+      margin-top: 10px;
+      font-family: var(--serif); font-weight: 600;
+      font-size: clamp(1.9rem, 4vw, 2.7rem); line-height: 1.1; letter-spacing: -.02em;
     }
 
     /* ── ABOUT ── */
-    #about {
-      background: var(--surface);
+    .about-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 64px; }
+    .about-grid .sec-head { margin: 0; }
+    .about-body p { color: var(--muted); font-size: 1.08rem; }
+    .about-body p + p { margin-top: 1.1rem; }
+    .about-body p:first-child { color: var(--text); }
+
+    /* ── WORK ── */
+    .work-list { display: grid; gap: 20px; }
+    .case {
+      background: var(--surface); border: 1px solid var(--line); border-radius: 18px;
+      padding: 36px;
+      display: grid; grid-template-columns: 260px 1fr; gap: 40px;
+    }
+    .case-num {
+      font-size: .78rem; font-weight: 600; letter-spacing: .14em; color: var(--faint);
+    }
+    .case h3 {
+      margin-top: 10px;
+      font-family: var(--serif); font-weight: 600;
+      font-size: 1.5rem; line-height: 1.2; letter-spacing: -.01em;
+    }
+    .case-rows { display: grid; gap: 18px; }
+    .row-label {
+      font-size: .74rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 4px;
+    }
+    .case-rows p, .case-rows li { color: var(--muted); }
+    .case-rows .result-row p, .case-rows .result-row li { color: var(--text); }
+    .case-rows ul { list-style: none; display: grid; gap: 8px; }
+    .case-rows li { position: relative; padding-left: 20px; }
+    .case-rows li::before {
+      content: ''; position: absolute; left: 2px; top: .7em;
+      width: 7px; height: 7px; border-radius: 50%; background: var(--accent);
+    }
+    .note {
+      display: inline-block; margin-top: 4px;
+      font-size: .9rem; color: var(--muted);
+      padding: 6px 12px; border-radius: 8px; background: var(--accent-soft);
     }
 
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-      max-width: 1100px; margin: 0 auto;
-    }
 
-    .about-text p {
-      color: var(--muted); font-size: 1.05rem; line-height: 1.9;
-      margin-bottom: 1rem;
+    /* ── EXPERIENCE ── */
+    .exp-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 64px; }
+    .company {
+      font-family: var(--serif); font-weight: 600; font-size: 1.5rem; margin-bottom: 24px;
     }
-    .about-text p strong { color: var(--text); }
+    .timeline { border-left: 2px solid var(--line); padding-left: 28px; display: grid; gap: 32px; }
+    .role { position: relative; }
+    .role::before {
+      content: ''; position: absolute; left: -36px; top: 7px;
+      width: 14px; height: 14px; border-radius: 50%;
+      background: var(--bg); border: 2px solid var(--accent);
+    }
+    section.alt .role::before { background: var(--surface); }
+    .role:first-child::before { background: var(--accent); }
+    .role h4 { font-size: 1.08rem; font-weight: 600; }
+    .role .when { font-size: .9rem; color: var(--faint); margin-top: 2px; }
+    .role p { margin-top: 8px; color: var(--muted); }
 
-    .about-stats {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem;
+    .side h4 {
+      font-size: .78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 14px;
     }
-
-    .stat-card {
-      background: rgba(255,255,255,.5);
-      backdrop-filter: blur(16px) saturate(180%);
-      -webkit-backdrop-filter: blur(16px) saturate(180%);
-      border: 1px solid rgba(255,255,255,.7);
-      border-radius: 10px; padding: 1.5rem;
-      text-align: center;
-      box-shadow: 0 4px 20px rgba(37,99,235,.08), inset 0 1px 0 rgba(255,255,255,.9);
-      transition: border-color .2s, transform .2s, box-shadow .2s;
-    }
-    .stat-card:hover {
-      border-color: rgba(37,99,235,.35); transform: translateY(-3px);
-      box-shadow: 0 12px 32px rgba(37,99,235,.14), inset 0 1px 0 rgba(255,255,255,.9);
-    }
-    .stat-card .number {
-      font-size: 2rem; font-weight: 800;
-      color: var(--accent); line-height: 1;
-    }
-    .stat-card .label {
-      font-size: .8rem; color: var(--muted);
-      margin-top: .3rem; letter-spacing: .5px;
-    }
-
-    /* ── PROJECT ── */
-    #project { background: var(--bg); }
-
-    .project-track {
-      display: flex;
-      gap: 1.5rem;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      padding: 0.5rem 0 1.5rem;
-      scrollbar-width: none;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    .project-track::-webkit-scrollbar { display: none; }
-
-    .project-dots {
-      display: flex;
-      justify-content: center;
-      gap: 0.5rem;
-      margin-top: 1.25rem;
-    }
-    .project-dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: rgba(37,99,235,.2);
-      border: none; cursor: pointer; padding: 0;
-      transition: background .25s, transform .25s;
-    }
-    .project-dot.active {
-      background: var(--accent);
-      transform: scale(1.35);
-    }
-
-    .project-card {
-      flex: 0 0 100%;
-      scroll-snap-align: start;
-      background: rgba(255,255,255,.55);
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
-      border: 1px solid rgba(255,255,255,.75);
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 8px 32px rgba(37,99,235,.09), inset 0 1px 0 rgba(255,255,255,.95);
-      transition: box-shadow .3s, transform .3s;
-    }
-    .project-card:hover {
-      box-shadow: 0 20px 60px rgba(37,99,235,.16), inset 0 1px 0 rgba(255,255,255,.95);
-      transform: translateY(-4px);
-    }
-
-    .project-header {
-      padding: 2.5rem 2.5rem 0;
-      display: flex; align-items: flex-start; gap: 1.2rem;
-    }
-
-    .project-icon {
-      width: 52px; height: 52px; border-radius: 12px;
-      background: linear-gradient(135deg, var(--accent), #1d4ed8);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.4rem; flex-shrink: 0;
-    }
-
-    .project-meta h3 {
-      font-size: 1.6rem; font-weight: 800; letter-spacing: -.5px;
-    }
-    .project-meta h3 span { color: var(--accent); }
-    .project-meta .tag {
-      display: inline-block; margin-top: .4rem;
-      padding: .25rem .7rem; border-radius: 20px;
-      background: rgba(255,255,255,.5); border: 1px solid rgba(255,255,255,.7);
-      font-size: .75rem; color: var(--accent); letter-spacing: 1px;
-    }
-
-    .project-body {
-      padding: 1.8rem 2.5rem;
-      color: var(--muted); font-size: 1rem; line-height: 1.85;
-    }
-
-    .project-pillars {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 1rem; padding: 0 2.5rem 2.5rem;
-    }
-
-    .pillar {
-      background: rgba(255,255,255,.42);
-      backdrop-filter: blur(12px) saturate(160%);
-      -webkit-backdrop-filter: blur(12px) saturate(160%);
-      border: 1px solid rgba(255,255,255,.68);
-      border-radius: 10px; padding: 1.2rem;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.85);
-      transition: border-color .2s, box-shadow .2s;
-    }
-    .pillar:hover {
-      border-color: rgba(37,99,235,.35);
-      box-shadow: 0 6px 20px rgba(37,99,235,.1), inset 0 1px 0 rgba(255,255,255,.9);
-    }
-    .pillar .pillar-icon { font-size: 1.3rem; margin-bottom: .4rem; }
-    .pillar h4 { font-size: .85rem; font-weight: 700; margin-bottom: .3rem; }
-    .pillar p { font-size: .78rem; color: var(--muted); line-height: 1.5; }
+    .side + .side { margin-top: 36px; }
+    .edu { display: grid; gap: 16px; }
+    .edu div strong { display: block; font-weight: 600; }
+    .edu div span { color: var(--muted); font-size: .95rem; }
+    .side p { color: var(--muted); }
 
     /* ── SKILLS ── */
-    #skills { background: var(--surface); }
-
-    .skills-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem; max-width: 1000px; margin: 0 auto;
+    .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .skill {
+      border: 1px solid var(--line); border-radius: 18px; padding: 28px;
+      background: var(--surface);
     }
-
-    .skill-card {
-      flex: 1 1 220px;
-      max-width: calc(25% - 0.75rem);
-      background: rgba(255,255,255,.5);
-      backdrop-filter: blur(16px) saturate(180%);
-      -webkit-backdrop-filter: blur(16px) saturate(180%);
-      border: 1px solid rgba(255,255,255,.72);
-      border-radius: 10px;
-      padding: 1.6rem 1.4rem;
-      display: flex; align-items: flex-start; gap: .9rem;
-      box-shadow: 0 4px 16px rgba(37,99,235,.07), inset 0 1px 0 rgba(255,255,255,.9);
-      transition: border-color .2s, transform .2s, box-shadow .2s;
-    }
-    .skill-card:hover {
-      border-color: rgba(37,99,235,.35);
-      transform: translateY(-3px);
-      box-shadow: 0 12px 32px var(--glow), inset 0 1px 0 rgba(255,255,255,.9);
-    }
-
-    .skill-dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: var(--accent);
-      margin-top: 7px; flex-shrink: 0;
-      box-shadow: 0 0 8px var(--accent);
-    }
-
-    .skill-card h4 { font-size: .95rem; font-weight: 700; }
-    .skill-card p  { font-size: .8rem; color: var(--muted); margin-top: .2rem; }
-
-    /* ── COMPLIANCE ── */
-    #compliance { background: var(--bg); }
-
-    .compliance-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.4fr;
-      gap: 4rem;
-      align-items: start;
-      max-width: 1100px; margin: 0 auto;
-    }
-
-    .compliance-intro p {
-      color: var(--muted); font-size: 1.05rem; line-height: 1.9;
-      margin-bottom: 1rem;
-    }
-
-    .cert-cards { display: flex; flex-direction: column; gap: 1rem; }
-
-    .cert-card {
-      display: flex; align-items: flex-start; gap: 1.2rem;
-      background: rgba(255,255,255,.55);
-      backdrop-filter: blur(16px) saturate(180%);
-      -webkit-backdrop-filter: blur(16px) saturate(180%);
-      border: 1px solid rgba(255,255,255,.72);
-      border-radius: 12px; padding: 1.5rem;
-      box-shadow: 0 4px 18px rgba(37,99,235,.07), inset 0 1px 0 rgba(255,255,255,.9);
-      transition: border-color .2s, transform .2s, box-shadow .2s;
-    }
-    .cert-card:hover {
-      border-color: rgba(37,99,235,.35);
-      transform: translateX(4px);
-      box-shadow: 0 10px 32px var(--glow), inset 0 1px 0 rgba(255,255,255,.9);
-    }
-
-    .cert-badge {
-      width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
-      background: linear-gradient(135deg, var(--accent), #1d4ed8);
-      display: flex; align-items: center; justify-content: center;
-      font-size: .85rem; font-weight: 800; color: #ffffff;
-      box-shadow: 0 0 14px rgba(37,99,235,.3);
-    }
-
-    .cert-card h4 { font-size: 1rem; font-weight: 700; margin-bottom: .3rem; }
-    .cert-card p  { font-size: .85rem; color: var(--muted); line-height: 1.6; }
-
-    @media (max-width: 768px) {
-      .compliance-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .skill h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 14px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; }
+    .chips li {
+      font-size: .88rem; color: var(--text);
+      padding: 6px 12px; border-radius: 999px;
+      background: var(--surface-2);
     }
 
     /* ── CONTACT ── */
-    #contact {
-      background: var(--bg);
-      text-align: center;
+    #contact { padding: 112px 0; }
+    .contact-card {
+      background: var(--text); color: var(--bg);
+      border-radius: 28px; padding: 72px 56px;
     }
+    .contact-card .eyebrow { color: color-mix(in srgb, var(--bg) 70%, transparent); }
+    .contact-card h2 {
+      margin-top: 12px;
+      font-family: var(--serif); font-weight: 600;
+      font-size: clamp(2.4rem, 6vw, 4rem); line-height: 1.05; letter-spacing: -.025em;
+    }
+    .contact-card p {
+      margin-top: 18px; max-width: 620px; font-size: 1.1rem;
+      color: color-mix(in srgb, var(--bg) 78%, transparent);
+    }
+    .contact-card .btns { margin-top: 36px; }
+    .contact-card .btn-primary { background: var(--bg); color: var(--text); border-color: var(--bg); }
+    .contact-card .btn-primary:hover { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+    .contact-card .btn-ghost { color: var(--bg); border-color: color-mix(in srgb, var(--bg) 35%, transparent); }
+    .contact-card .btn-ghost:hover { border-color: var(--bg); }
 
-    .contact-inner {
-      max-width: 600px; margin: 0 auto;
-      background: rgba(255,255,255,.6);
-      backdrop-filter: blur(28px) saturate(200%);
-      -webkit-backdrop-filter: blur(28px) saturate(200%);
-      border: 1px solid rgba(255,255,255,.78);
-      border-radius: 20px;
-      padding: 4rem 3rem;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 8px 40px rgba(37,99,235,.1), inset 0 1px 0 rgba(255,255,255,.95);
-    }
-    .contact-inner::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 50% 0%, rgba(37,99,235,.06) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .contact-inner p {
-      color: var(--muted); font-size: 1.05rem;
-      line-height: 1.8; margin-bottom: 2rem;
-    }
-
-    .contact-link {
-      display: inline-flex; align-items: center; gap: .5rem;
-      color: var(--accent); font-size: .9rem;
-      text-decoration: none; margin-top: 1.5rem;
-      opacity: .8; transition: opacity .2s;
-    }
-    .contact-link:hover { opacity: 1; }
-
-    /* ── FOOTER ── */
     footer {
-      background: rgba(255,255,255,.6);
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
-      border-top: 1px solid rgba(255,255,255,.75);
-      text-align: center;
-      padding: 1.8rem 5%;
-      color: var(--muted); font-size: .8rem;
-      letter-spacing: .5px;
+      padding: 32px 0 48px; color: var(--faint); font-size: .9rem;
     }
-    footer span { color: var(--accent); }
 
-    /* ── SCROLL REVEAL ── */
-    .reveal {
-      opacity: 0; transform: translateY(28px);
-      transition: opacity .7s ease, transform .7s ease;
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .btn { transition: none; }
     }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 768px) {
-      .nav-links {
-        position: fixed; top: 0; right: -100%; height: 100vh;
-        width: 70%; flex-direction: column; gap: 2rem;
-        background: rgba(255,255,255,.75); backdrop-filter: blur(28px) saturate(200%); -webkit-backdrop-filter: blur(28px) saturate(200%); padding: 5rem 2rem 2rem;
-        transition: right .3s ease;
-        border-left: 1px solid var(--border);
-      }
-      .nav-links.open { right: 0; }
-      .nav-links a { font-size: 1.1rem; }
-      .hamburger { display: flex; }
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+      .hero-photo { justify-self: start; max-width: 260px; order: -1; }
+      #top { padding-top: 112px; }
+      .results { grid-template-columns: repeat(2, 1fr); margin-top: 56px; }
+      .result, .result + .result { padding: 24px 16px 24px 0; border-left: 0; }
+      .result:nth-child(even) { padding-left: 16px; border-left: 1px solid var(--line); }
+      .result:nth-child(n+3) { border-top: 1px solid var(--line); }
+      .about-grid, .exp-grid { grid-template-columns: 1fr; gap: 32px; }
+      .case { grid-template-columns: 1fr; gap: 20px; padding: 28px; }
+      .skills-grid { grid-template-columns: 1fr; }
+      section.block { padding: 72px 0; }
+      .contact-card { padding: 48px 28px; }
+    }
 
-      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-      .project-pillars { grid-template-columns: 1fr; }
-      .project-header { flex-direction: column; gap: .8rem; }
-      .project-header, .project-body, .project-pillars { padding-left: 1.5rem; padding-right: 1.5rem; }
-      .contact-inner { padding: 3rem 1.5rem; }
-      .about-stats { grid-template-columns: 1fr 1fr; }
+    @media (max-width: 720px) {
+      .menu-btn { display: block; }
+      .nav-links {
+        position: absolute; top: 64px; left: 0; right: 0;
+        flex-direction: column; gap: 0;
+        background: var(--bg); border-bottom: 1px solid var(--line);
+        padding: 8px 24px 16px;
+        display: none;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { display: block; padding: 12px 0; font-size: 1.05rem; color: var(--text); }
+    }
+
+    @media (max-width: 420px) {
+      .wrap, .nav-inner { padding: 0 16px; }
+      .case, .skill { padding: 22px; }
+      .btn { padding: .75rem 1.2rem; }
     }
   </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav id="nav">
-  <a href="#hero" class="logo">May<span>.</span>Han</a>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#about">About</a></li>
-    <li><a href="#project">Work</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#compliance">Compliance</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <div class="hamburger" id="hamburger" aria-label="Toggle menu">
-    <span></span><span></span><span></span>
+<nav id="nav" aria-label="Main">
+  <div class="nav-inner">
+    <a href="#top" class="logo">May Han</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
   </div>
 </nav>
 
-<!-- HERO -->
-<section id="hero">
-  <p class="hero-eyebrow">Technical Program Manager</p>
-  <h1>May Han</h1>
-  <img src="photo.jpg" alt="May Han" class="hero-photo">
-  <p class="hero-title">PMO Leader driving results at the intersection of technology &amp; governance</p>
-  <p class="hero-tagline">Enabling clarity, execution, and impact across complex technical programs</p>
-  <div class="cta-group">
-    <a href="#project" class="btn-primary">View My Work</a>
-    <a href="#contact" class="btn-ghost">Get In Touch</a>
+<main>
+
+<!-- OPENING -->
+<header id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow">Program Manager, Technical Delivery and Compliance</p>
+        <h1 class="hero-name">May Han</h1>
+        <p class="hero-lead">I bring order to complex software delivery.</p>
+        <p class="hero-sub">I run delivery and compliance for a multi-tenant SaaS platform serving utility clients, with clear frameworks that help teams decide and ship.</p>
+        <div class="btns">
+          <a href="#work" class="btn btn-primary">See My Work</a>
+          <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+        </div>
+      </div>
+      <img src="photo.jpg" alt="Portrait of May Han" class="hero-photo" />
+    </div>
+
+    <div class="results" aria-label="Results">
+      <div class="result">
+        <div class="fig">$20M+</div>
+        <div class="lbl">core SaaS contract revenue supported</div>
+      </div>
+      <div class="result">
+        <div class="fig">25%</div>
+        <div class="lbl">increase in engineering output</div>
+      </div>
+      <div class="result">
+        <div class="fig">130+</div>
+        <div class="lbl">features overseen in a year (estimated), 100% on time</div>
+      </div>
+      <div class="result">
+        <div class="fig">50%</div>
+        <div class="lbl">more hosted data at no added resource cost (estimated)</div>
+      </div>
+    </div>
   </div>
-</section>
+</header>
 
 <!-- ABOUT -->
-<section id="about">
-  <div class="about-grid">
-    <div class="about-text reveal">
-      <p class="section-label">About Me</p>
-      <h2 class="section-title">Building bridges between <span>tech &amp; business</span></h2>
-      <div class="divider"></div>
-      <p>I'm a Technical Program Manager who specializes in <strong>product roadmap ownership</strong> and <strong>end-to-end feature delivery</strong>. I bring structure to ambiguity and momentum to complex initiatives.</p>
-      <p>My strength lies in bridging technical and business teams — translating engineering realities into strategic decisions, and business priorities into actionable delivery plans. I work at scale, across enterprise clients and cross-functional organizations.</p>
+<section id="about" class="block">
+  <div class="wrap about-grid reveal">
+    <div class="sec-head">
+      <p class="eyebrow">About</p>
+      <h2>Structure for complex problems.</h2>
     </div>
-    <div class="about-stats reveal">
-      <div class="stat-card">
-        <div class="number">25%</div>
-        <div class="label">Engineering Output Increased</div>
-      </div>
-      <div class="stat-card">
-        <div class="number">$5M</div>
-        <div class="label">Contract Value Secured</div>
-      </div>
-      <div class="stat-card">
-        <div class="number" style="font-size:1.4rem;">ISO/SOC2</div>
-        <div class="label">Compliance Achieved</div>
-      </div>
-      <div class="stat-card">
-        <div class="number">100%</div>
-        <div class="label">On-Time Delivery</div>
-      </div>
+    <div class="about-body">
+      <p>I’m a Program Manager at EKN Engineering, where I started as Program Coordinator in January 2024. I work with engineering, QA, product, and design from sprint planning through release, and I approve every production release.</p>
+      <p>I also lead our compliance work. I built our ISO 27001 and ISO 9001 programs from the ground up and led our first SOC 2 Type I and Type II audits.</p>
+      <p>I do my best work when a complex problem needs structure: a clear framework, shared priorities, and a team working toward the same goal. I’m not a software engineer, so I stay clear about what I own and what my engineering partners build.</p>
     </div>
   </div>
 </section>
 
-<!-- PROJECT -->
-<section id="project">
-  <div style="text-align:center; margin-bottom:3rem;" class="reveal">
-    <p class="section-label">Featured Work</p>
-    <h2 class="section-title">Delivering at <span>Enterprise Scale</span></h2>
-    <div class="divider" style="margin:0 auto;"></div>
+<!-- WORK -->
+<section id="work" class="block alt">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Selected Work</p>
+      <h2>What I’ve built and delivered.</h2>
+    </div>
+
+    <div class="work-list">
+
+      <article class="case reveal">
+        <div>
+          <p class="case-num">01</p>
+          <h3>Making prioritization clear</h3>
+        </div>
+        <div class="case-rows">
+          <div>
+            <p class="row-label">The problem</p>
+            <p>Requests had no consistent way into the roadmap, and much of their business value hadn’t been quantified.</p>
+          </div>
+          <div>
+            <p class="row-label">What I did</p>
+            <p>I built our prioritization model and used Claude Code to build a Request Intake Tool that scores and prioritizes requests automatically before they reach the backlog. I also make the final call when priorities are disputed.</p>
+          </div>
+          <div class="result-row">
+            <p class="row-label">The result</p>
+            <p>The tool surfaced about $5M in previously unquantified business value for the 2026 roadmap and led to org-wide adoption of a structured process.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="case reveal">
+        <div>
+          <p class="case-num">02</p>
+          <h3>Rebuilding how we deliver</h3>
+        </div>
+        <div class="case-rows">
+          <div>
+            <p class="row-label">The problem</p>
+            <p>Delivery needed a more consistent rhythm and a closer link to company goals.</p>
+          </div>
+          <div>
+            <p class="row-label">What I did</p>
+            <p>I rebuilt our sprint rituals from scratch, implemented Jira automations, and aligned sprint goals to OKRs. I also coordinate releases and triage critical hotfixes.</p>
+          </div>
+          <div class="result-row">
+            <p class="row-label">The result</p>
+            <p>Engineering output rose 25%, with full team adoption within days. A mid-cycle pivot also identified critical platform gaps and saved a $1M contract at risk.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="case reveal">
+        <div>
+          <p class="case-num">03</p>
+          <h3>Hosting more data without adding cost</h3>
+        </div>
+        <div class="case-rows">
+          <div>
+            <p class="row-label">The problem</p>
+            <p>I review our AWS usage bill monthly, and we needed to get more from our existing resources.</p>
+          </div>
+          <div>
+            <p class="row-label">What I did</p>
+            <p>I prompted and prioritized a migration from DocumentDB to PostgreSQL and did the cost optimization research with Engineering, who executed the work.</p>
+          </div>
+          <div class="result-row">
+            <p class="row-label">The result</p>
+            <p>We can host an estimated 50% more data with no additional resource cost.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="case reveal">
+        <div>
+          <p class="case-num">04</p>
+          <h3>Building compliance from nothing</h3>
+        </div>
+        <div class="case-rows">
+          <div>
+            <p class="row-label">The problem</p>
+            <p>We needed security and quality programs where none existed, and clients needed proof.</p>
+          </div>
+          <div>
+            <p class="row-label">What I did</p>
+            <p>I built our ISO 27001 and ISO 9001 programs as lead and owner, and led the company through its first SOC 2 Type I and Type II audits. I also turned client security obligations into product requirements for features including SSO, audit logs, and data archival, which the product and software teams implemented.</p>
+          </div>
+          <div class="result-row">
+            <p class="row-label">The result</p>
+            <ul>
+              <li>ISO 27001 and ISO 9001 certification, plus passed surveillance audits with minimal findings</li>
+              <li>SOC 2 Type I and Type II audits passed with minimal exceptions</li>
+              <li>Multiple client-led cybersecurity audits passed, enabling $5M–$15M in contract revenue</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="case reveal">
+        <div>
+          <p class="case-num">05</p>
+          <h3>Adopting AI responsibly</h3>
+        </div>
+        <div class="case-rows">
+          <div>
+            <p class="row-label">What I did</p>
+            <p>I rolled out a company-wide AI Acceptable Use Policy and an AI Management System framework aligned to ISO 42001. As a key stakeholder on our AI Steering Committee, I advise on whether AI use meets ISO and SOC standards, client needs, and regulatory guidelines. I also guide Engineering’s safe adoption of tools like Claude Code and Cursor.</p>
+          </div>
+          <div class="result-row">
+            <p class="row-label">Also delivered</p>
+            <p>Release coordination for three concurrent AI/ML initiatives, including a computer vision model that reached 95% accuracy and cut inspection cycle time by 20%.</p>
+          </div>
+          <div>
+            <p class="row-label">Where it stands</p>
+            <p class="note">ISO 42001 preparation is underway, and we are not certified.</p>
+          </div>
+        </div>
+      </article>
+
+    </div>
   </div>
+</section>
 
-  <div class="project-track">
-
-    <div class="project-card reveal">
-      <div class="project-header">
-        <div class="project-icon">&#9741;</div>
-        <div class="project-meta">
-          <h3><span>over</span>.vu</h3>
-          <span class="tag">Work Management Platform</span>
-        </div>
-      </div>
-      <div class="project-body">
-        <p>A work management platform purpose-built for large-scale utility clients. over.vu enables enterprise organizations to manage complex operational workflows with clarity and precision. As Technical Program Manager, I sit at the center of product strategy and engineering execution — ensuring the platform evolves in lock-step with client needs and long-term business goals.</p>
-      </div>
-      <div class="project-pillars">
-        <div class="pillar">
-          <div class="pillar-icon">&#128203;</div>
-          <h4>Product Roadmap</h4>
-          <p>Own and prioritize the product roadmap, aligning features with enterprise client objectives and platform strategy.</p>
-        </div>
-        <div class="pillar">
-          <div class="pillar-icon">&#9881;&#65039;</div>
-          <h4>Technical Operations</h4>
-          <p>Manage day-to-day technical operations, ensuring engineering velocity, stability, and cross-team coordination.</p>
-        </div>
-        <div class="pillar">
-          <div class="pillar-icon">&#128640;</div>
-          <h4>Delivery Framework</h4>
-          <p>Lead the end-to-end delivery framework for feature execution, from scoping through release across enterprise clients.</p>
-        </div>
-      </div>
+<!-- EXPERIENCE -->
+<section id="experience" class="block">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Experience</p>
+      <h2>Where I’ve worked and studied.</h2>
     </div>
 
-    <div class="project-card reveal">
-      <div class="project-header">
-        <div class="project-icon">&#128241;</div>
-        <div class="project-meta">
-          <h3>Field <span>Application</span></h3>
-          <span class="tag">iOS Application</span>
+    <div class="exp-grid">
+      <div class="reveal">
+        <p class="company">EKN Engineering</p>
+        <div class="timeline">
+          <div class="role">
+            <h4>Program Manager</h4>
+            <p class="when">Jul 2025 – Present</p>
+            <p>Program delivery, release management, compliance leadership, and AI governance for over.vu.</p>
+          </div>
+          <div class="role">
+            <h4>Program Coordinator</h4>
+            <p class="when">Jan 2024 – Jul 2025</p>
+            <p>Delivery across 4 concurrent product lines, plus building our ISO programs. I also became the main point of contact for offshore tooling and AWS managed services vendors, a role I continue today.</p>
+          </div>
         </div>
       </div>
-      <div class="project-body">
-        <p>A native iOS application that connects directly to the over.vu platform, purpose-built to collect structured field data at job sites and feed it seamlessly into the desktop workflow. I managed end-to-end delivery of the application — from scoping and contractor resource management through QA and release — and designed the AI feature that bridges mobile intake with over.vu desktop output, transforming raw field captures into actionable work records.</p>
-      </div>
-      <div class="project-pillars">
-        <div class="pillar">
-          <div class="pillar-icon">&#128203;</div>
-          <h4>Project Management</h4>
-          <p>Owned full delivery lifecycle from scoping through App Store release, coordinating contractor resources and cross-functional timelines.</p>
+
+      <aside class="reveal">
+        <div class="side">
+          <h4>Education</h4>
+          <div class="edu">
+            <div>
+              <strong>UC San Diego, Master’s Degree in Public Policy</strong>
+              <span>2023 · Program Design &amp; Evaluation</span>
+            </div>
+            <div>
+              <strong>UC San Diego, Bachelor’s Degree in Environmental Systems</strong>
+              <span>2021</span>
+            </div>
+          </div>
         </div>
-        <div class="pillar">
-          <div class="pillar-icon">&#128640;</div>
-          <h4>Go-to-Market Oversight</h4>
-          <p>Defined rollout strategy, coordinated field pilots, and drove adoption across utility client field teams.</p>
+        <div class="side">
+          <h4>Languages</h4>
+          <p>English and Chinese (both fluent)</p>
         </div>
-        <div class="pillar">
-          <div class="pillar-icon">&#127959;</div>
-          <h4>Architectural Planning</h4>
-          <p>Designed the AI-powered intake-to-output pipeline connecting mobile data capture to the over.vu platform.</p>
-        </div>
-      </div>
+      </aside>
     </div>
-
-    <div class="project-card reveal">
-      <div class="project-header">
-        <div class="project-icon">&#9889;</div>
-        <div class="project-meta">
-          <h3>Enterprise <span>Utility Apps</span></h3>
-          <span class="tag">Custom Software Delivery</span>
-        </div>
-      </div>
-      <div class="project-body">
-        <p>Project managed the full delivery lifecycle of three custom software solutions built for large-scale utility clients, guiding each engagement from initial proposal and contract negotiation through development, acceptance testing, and final sign-off. Responsible for scope definition, SLA structuring, vendor coordination, and revenue recognition across all three concurrent programs.</p>
-      </div>
-      <div class="project-pillars">
-        <div class="pillar">
-          <div class="pillar-icon">&#128221;</div>
-          <h4>Software Contract Management</h4>
-          <p>Drafted and negotiated software agreements, change orders, and acceptance criteria for three utility client engagements.</p>
-        </div>
-        <div class="pillar">
-          <div class="pillar-icon">&#127919;</div>
-          <h4>SLA Definition</h4>
-          <p>Defined service-level commitments, uptime targets, and escalation paths aligned to utility operational requirements.</p>
-        </div>
-        <div class="pillar">
-          <div class="pillar-icon">&#128176;</div>
-          <h4>Revenue Capture</h4>
-          <p>Managed milestone-based billing, ensured acceptance sign-off, and drove timely revenue recognition across all projects.</p>
-        </div>
-      </div>
-    </div>
-
-  </div><!-- /.project-track -->
-
-  <div class="project-dots" aria-label="Project navigation">
-    <button class="project-dot active" aria-label="Project 1"></button>
-    <button class="project-dot" aria-label="Project 2"></button>
-    <button class="project-dot" aria-label="Project 3"></button>
   </div>
 </section>
 
 <!-- SKILLS -->
-<section id="skills">
-  <div style="text-align:center; margin-bottom:3rem;" class="reveal">
-    <p class="section-label">Capabilities</p>
-    <h2 class="section-title">Core <span>Skills</span></h2>
-    <div class="divider" style="margin:0 auto;"></div>
-  </div>
+<section id="skills" class="block alt">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Skills</p>
+      <h2>What I bring to the table.</h2>
+    </div>
 
-  <div class="skills-grid">
-    <div class="skill-card reveal">
-      <div class="skill-dot"></div>
-      <div>
-        <h4>Program Roadmap Management</h4>
-        <p>Defining, prioritizing, and evolving product roadmaps aligned to business and client outcomes.</p>
+    <div class="skills-grid">
+      <div class="skill reveal">
+        <h3>Program delivery</h3>
+        <ul class="chips">
+          <li>SDLC</li><li>Release management</li><li>Agile/Scrum</li><li>OKR alignment</li><li>Risk and dependency management (RAID)</li>
+        </ul>
       </div>
-    </div>
-    <div class="skill-card reveal">
-      <div class="skill-dot"></div>
-      <div>
-        <h4>Feature Delivery</h4>
-        <p>End-to-end ownership of feature lifecycle from scoping and design through QA and release.</p>
+      <div class="skill reveal">
+        <h3>Security and compliance</h3>
+        <ul class="chips">
+          <li>SOC 2</li><li>ISO 27001</li><li>ISO 9001</li><li>Audit leadership</li><li>Vendor and third-party risk management</li>
+        </ul>
       </div>
-    </div>
-    <div class="skill-card reveal">
-      <div class="skill-dot"></div>
-      <div>
-        <h4>Technical Operations</h4>
-        <p>Overseeing engineering processes, tooling, and cross-functional coordination to maintain delivery health.</p>
+      <div class="skill reveal">
+        <h3>AI governance</h3>
+        <ul class="chips">
+          <li>ISO 42001 readiness</li><li>AI policy</li><li>AI tool inventory and risk review</li>
+        </ul>
       </div>
-    </div>
-    <div class="skill-card reveal">
-      <div class="skill-dot"></div>
-      <div>
-        <h4>Stakeholder Management</h4>
-        <p>Building alignment across engineering, product, and executive stakeholders at every level.</p>
-      </div>
-    </div>
-    <div class="skill-card reveal">
-      <div class="skill-dot"></div>
-      <div>
-        <h4>Delivery Frameworks</h4>
-        <p>Designing and scaling structured delivery processes that reduce risk and increase predictability.</p>
-      </div>
-    </div>
-    <div class="skill-card reveal">
-      <div class="skill-dot"></div>
-      <div>
-        <h4>Enterprise Clients</h4>
-        <p>Navigating complexity and high expectations across large-scale enterprise client relationships.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- COMPLIANCE -->
-<section id="compliance">
-  <div style="text-align:center; margin-bottom:3rem;" class="reveal">
-    <p class="section-label">Governance &amp; Risk</p>
-    <h2 class="section-title">Compliance &amp; <span>Certification</span></h2>
-    <div class="divider" style="margin:0 auto;"></div>
-  </div>
-
-  <div class="compliance-grid reveal">
-    <div class="compliance-intro">
-      <p>Beyond delivery, I believe sustainable programs are built on a foundation of trust, security, and quality. I led my organization through a rigorous multi-framework compliance journey — driving cross-functional alignment across engineering, operations, and leadership to achieve three major certifications.</p>
-      <p>This work involved designing audit-ready processes, managing evidence collection, coordinating with external assessors, and embedding a culture of governance into day-to-day operations — without slowing down product delivery.</p>
-    </div>
-    <div class="cert-cards">
-      <div class="cert-card">
-        <div class="cert-badge">✓</div>
-        <div>
-          <h4>ISO 9001</h4>
-          <p>Quality Management System — establishing consistent, auditable processes across the organization to ensure repeatable delivery excellence.</p>
-        </div>
-      </div>
-      <div class="cert-card">
-        <div class="cert-badge">✓</div>
-        <div>
-          <h4>ISO 27001</h4>
-          <p>Information Security Management — building a structured ISMS to protect client data and enterprise assets at scale.</p>
-        </div>
-      </div>
-      <div class="cert-card">
-        <div class="cert-badge">✓</div>
-        <div>
-          <h4>SOC 2</h4>
-          <p>Trust Services Criteria — demonstrating security, availability, and confidentiality controls to meet enterprise client requirements.</p>
-        </div>
+      <div class="skill reveal">
+        <h3>Tools</h3>
+        <ul class="chips">
+          <li>Jira (Advanced JQL and automation)</li><li>Confluence</li><li>Thoropass</li><li>SQL</li><li>Power BI</li><li>Tableau</li><li>AWS (fundamentals)</li><li>Claude Code</li><li>Cursor</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -787,81 +597,53 @@
 
 <!-- CONTACT -->
 <section id="contact">
-  <div class="contact-inner reveal">
-    <p class="section-label" style="text-align:center;">Let's Connect</p>
-    <h2 class="section-title" style="text-align:center; font-size:clamp(1.6rem,3.5vw,2.4rem);">Ready to drive <span>impact</span> together?</h2>
-    <div class="divider" style="margin:1rem auto 1.5rem;"></div>
-    <p>I'm always open to meaningful conversations about technical programs, product strategy, and high-impact delivery. Whether you're looking to collaborate, hire, or just connect — reach out.</p>
-    <a href="mailto:hanxuyuan1390@yahoo.com" class="btn-primary" style="display:inline-block;">Say Hello</a>
-    <a href="resume.pdf" download="May_Han_Resume.pdf" class="btn-ghost" style="display:inline-block; margin-left:.75rem;">Download Resume</a>
-    <br />
-    <a href="https://www.linkedin.com/in/mayxhan/" class="contact-link" target="_blank" rel="noopener">
-      &#8599; LinkedIn Profile
-    </a>
+  <div class="wrap">
+    <div class="contact-card reveal">
+      <p class="eyebrow">Contact</p>
+      <h2>Let’s talk.</h2>
+      <p>I’m looking for technical program, security and compliance program, and product operations roles, remote or in Southern California.</p>
+      <div class="btns">
+        <a href="mailto:hanxuyuan1390@yahoo.com" class="btn btn-primary">Email Me</a>
+        <a href="resume.pdf" download="May_Han_Resume.pdf" class="btn btn-ghost">Download Resume</a>
+        <a href="https://www.linkedin.com/in/mayxhan/" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn ↗</a>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+</main>
+
 <footer>
-  &copy; 2026 <span>May Han</span> &mdash; Technical Program Manager
+  <div class="wrap">© 2026 May Han</div>
 </footer>
 
 <script>
-  // Nav scroll shadow
   const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 20);
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 10);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.getElementById('navLinks');
+  menuBtn.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', open);
   });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+  }));
 
-  // Hamburger menu
-  const hamburger = document.getElementById('hamburger');
-  const navLinks  = document.getElementById('navLinks');
-  hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('open');
-  });
-  navLinks.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => navLinks.classList.remove('open'));
-  });
-
-  // Scroll reveal
-  const revealEls = document.querySelectorAll('.reveal');
-  const observer  = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  revealEls.forEach(el => observer.observe(el));
-
-  // Project card dot indicator
-  const track = document.querySelector('.project-track');
-  const cards = document.querySelectorAll('.project-card');
-  const dots  = document.querySelectorAll('.project-dot');
-
-  if (track && dots.length) {
-    dots.forEach((dot, i) => {
-      dot.addEventListener('click', () => {
-        track.scrollTo({
-          left: track.scrollLeft +
-                cards[i].getBoundingClientRect().left -
-                track.getBoundingClientRect().left,
-          behavior: 'smooth'
-        });
+  const els = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
       });
-    });
-
-    const dotObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
-          const idx = Array.from(cards).indexOf(entry.target);
-          dots.forEach((d, j) => d.classList.toggle('active', j === idx));
-        }
-      });
-    }, { root: track, threshold: 0.5 });
-
-    cards.forEach(card => dotObserver.observe(card));
+    }, { threshold: 0.1 });
+    els.forEach(el => io.observe(el));
+  } else {
+    els.forEach(el => el.classList.add('visible'));
   }
 </script>
 </body>
